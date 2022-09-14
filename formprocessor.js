@@ -7,7 +7,6 @@ function setupEventListeners() {
   myForm.addEventListener("submit", handleSubmit);
 }
 
-function handleSubmit(event) {
   event.preventDefault();
   console.log(event.target);
   console.log(event.type);
