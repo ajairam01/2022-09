@@ -1,9 +1,9 @@
 
-const georgem = { name: "GM", instrument: "mixing board", ranking:5 }
-const john = { name: "JL", instrument: "rhythm guitar", ranking:1 }
-const ringo = { name: "RS", instrument: "drums", ranking:2 }
-const paul = { name: "PM", instrument: "bass", ranking:3 }
-const george = { name: "GH", instrument: "lead guitar", ranking:4 }
+const georgem = { name: "GM", instrument: "mixing board", ranking:5, recordCount: 0 }
+const john = { name: "JL", instrument: "rhythm guitar", ranking:1, recordCount: 20 }
+const ringo = { name: "RS", instrument: "drums", ranking:2, recordCount: 12 }
+const paul = { name: "PM", instrument: "bass", ranking:3, recordCount: 14 }
+const george = { name: "GH", instrument: "lead guitar", ranking:4, recordCount: 15 }
 
 const beatles = [paul, john, ringo, george];
 beatles.push(georgem);
@@ -79,4 +79,15 @@ console.log('here are the filtered beatles');
 console.table(filteredBeatles);
 
 
+const soloRecordsReducerFunction = (previousSum, currentBeatle) => previousSum + currentBeatle.recordCount;
+const totalNumberOfSoloRecords = beatles.reduce(soloRecordsReducerFunction, 0);
+console.log(`the beatles released a total of ${totalNumberOfSoloRecords} solo records`);
+
+
+const guitarPlayers = beatles.filter(beatle => beatle.instrument.indexOf('guitar') != -1);
+const gpsac = guitarPlayers.reduce(soloRecordsReducerFunction, 0);
+console.log(`the guitarists released a total of ${gpsac} solo records`);
+
+
+// console.log(`the guitarists released a total of ${beatles.filter(beatle => beatle.instrument.indexOf('guitar') != -1).reduce((previousSum, currentBeatle) => previousSum + currentBeatle.recordCount, 0)} solo records`)
 
