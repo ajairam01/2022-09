@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Examples of calling asynchronous JavaScript functions</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <button id="btn">click here to fetch data</button>
+    <script>
+      function fetchData() {
+        let url = "https://gorest.co.in/public-api/usersgdsfsgf";
+        //usingThen(url);
+        usingAsyncAwait(url);
+      }
+
+      function usingThen(url) {
+        fetch(url)
+        .then(
+          (response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error('problem with api call');
+            }
+          }
+        )
+        .then(
+          (responseAsJSON) => {
+            console.log(responseAsJSON.data);
+          }
+        )
+        .catch(
+          (error) => {
+            console.error(`catch says: ${error.message}`)
+          }
+        )
+      }
+
+      async function usingAsyncAwait(url) {
+        try {
+          const response = await fetch(url);
+          const responseAsJSON = response.ok ? await response.json() : null;
+          const data = responseAsJSON && responseAsJSON.data;
+
+          // let data;
+          // if (responseAsJSON === null) {
+          //   data = null;
+          // } else {
+          //   data = responseAsJSON.data;
+          // }
+
+          if (data) {
+            console.log(data);  
+          } else {
+            throw new Error('problem with request')
+          }
+        } catch (error) {
+          console.error(error.message);
+        }
+      }
+
+      document.getElementById('btn').addEventListener('click', fetchData);
+    </script>
+  </body>
+</html>
