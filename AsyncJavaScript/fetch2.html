@@ -5,35 +5,24 @@
     <meta charset="UTF-8" />
   </head>
   <body>
-    <button id="btn">click here to fetch data</button>
+    <nav>
+      <a href="index.html">home</a> &mdash;
+      <a href="0-synchronous.html">synchronous JS</a> &mdash;
+      <a href="1-callbacks.html">callback functions</a> &mdash;
+      <a href="2-promises.html">promises with .then()</a> &mdash;
+      <a href="3-asyncawait.html">promises with async/await</a> &mdash;
+      <a href="4-promises2.html">multiple promises with .then()</a> &mdash;
+      <a href="5-asyncawait2.html">multiple promises with async/await</a> &mdash;
+      <a href="fetch1.html">fetch with then()</a> &mdash;
+      fetch with async/await
+    </nav>
+    <hr/>
+    <button id="btn">get data using fetch / process it with async/await</button>
+    <hr/>
     <script>
       function fetchData() {
-        let url = "https://gorest.co.in/public-api/usersgdsfsgf";
-        //usingThen(url);
+        let url = "https://gorest.co.in/public-api/users";
         usingAsyncAwait(url);
-      }
-
-      function usingThen(url) {
-        fetch(url)
-        .then(
-          (response) => {
-            if (response.ok) {
-              return response.json();
-            } else {
-              throw new Error('problem with api call');
-            }
-          }
-        )
-        .then(
-          (responseAsJSON) => {
-            console.log(responseAsJSON.data);
-          }
-        )
-        .catch(
-          (error) => {
-            console.error(`catch says: ${error.message}`)
-          }
-        )
       }
 
       async function usingAsyncAwait(url) {
@@ -50,7 +39,7 @@
           // }
 
           if (data) {
-            console.log(data);  
+            console.log(data);
           } else {
             throw new Error('problem with request')
           }
